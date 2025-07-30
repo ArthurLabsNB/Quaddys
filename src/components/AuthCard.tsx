@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 type Mode = "login" | "register" | "magic";
 const emailOk = (v: string) => /^\S+@\S+\.\S+$/.test(v);
 const passOk = (v: string) => v.length >= 6;
 
 export default function AuthCard() {
+  const supabase = getSupabase();
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");

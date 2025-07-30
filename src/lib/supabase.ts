@@ -1,12 +1,21 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+let client: SupabaseClient | null = null;
 
-if (!url || !anon) {
-  throw new Error(
-    "Supabase no configurado: define NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY"
-  );
+export function getSupabase(): SupabaseClient {
+  if (!client) {
+    const url = process.env["NEXT_PUBLIC_SUPABASE_URL"];
+    const anon = process.env["NEXT_PUBLIC_SUPABASE_ANON_KEY"];
+    if (!url || !anon) {
+      if (typeof window === "undefined") {
+        // Evitar fallo en build cuando las env no estan definidas
+        return {} as SupabaseClient;
+      }
+      throw new Error(
+        "Supabase no configurado: define NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY"
+      );
+    }
+    client = createClient(url, anon);
+  }
+  return client;
 }
-
-export const supabase = createClient(url, anon);
