@@ -1,15 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { createSupabaseBrowser } from '../../lib/supabase';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '@/lib/supabase';
 
 const tabClasses = (active: boolean) =>
   `px-4 py-2 rounded-full text-sm cursor-pointer transition-colors ${active ? 'bg-white/20 text-white' : 'text-white/70 hover:text-white'}`;
 
 export default function AuthCard() {
-  const supabase = createSupabaseBrowser();
   const [tab, setTab] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -125,4 +124,3 @@ export default function AuthCard() {
     </div>
   );
 }
-
