@@ -1,11 +1,8 @@
+// tsconfig.json
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,25 +14,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "baseUrl": ".", // ⬅️ necesario
-    "paths": {
-      "@/*": [
-        "src/*"
-      ] // ⬅️ mapea a /src
-    }
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] }
   },
-  "include": [
-    "next-env.d.ts",
-    "next.config.ts",
-    "src/**/*",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "src/**/*", "next.config.ts"],
+  "exclude": ["node_modules"]
 }
