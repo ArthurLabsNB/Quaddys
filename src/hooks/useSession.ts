@@ -9,14 +9,14 @@ export function useSession() {
   useEffect(() => {
     let mounted = true;
 
-    supabase.auth.getSession().then(({ data }) => {
+    (async () => {
+      const { data } = await supabase.auth.getSession();
       if (!mounted) return;
       setSession(data.session ?? null);
       setLoading(false);
-    });
+    })();
 
     const { data: sub } = supabase.auth.onAuthStateChange((_e, sess) => {
-      if (!mounted) return;
       setSession(sess ?? null);
     });
 

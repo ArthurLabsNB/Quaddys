@@ -1,9 +1,12 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 
-export const createSupabaseBrowser = () =>
-  createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'anon'
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!url || !anon) {
+  throw new Error(
+    "Supabase no configurado: define NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY"
   );
+}
 
-export const supabase = createSupabaseBrowser();
+export const supabase = createClient(url, anon);
