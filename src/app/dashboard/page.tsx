@@ -2,17 +2,16 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createSupabaseBrowser } from '../../../lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 export default function Dashboard() {
   const router = useRouter();
-  const supabase = createSupabaseBrowser();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       if (!data.session) router.replace('/');
     });
-  }, [router, supabase]);
+  }, [router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
