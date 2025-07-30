@@ -15,8 +15,14 @@ export default function DashboardPage() {
   }, [router, supabase]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4">
       <h1 className="text-2xl text-white">Bienvenido al tablero</h1>
+      <button
+        onClick={() => window.location.assign("/api/riot/start")}
+        className="rounded-lg bg-white/90 text-black py-2 px-3 text-sm font-medium hover:bg-white"
+      >
+        Vincular Riot
+      </button>
     </div>
   );
 }
