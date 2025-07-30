@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -40,7 +37,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-=======
+
+# others
 *.rbc
 *.fyc
->>>>>>> ce1b4b16d48ea4230af9cfdcffe3866a1d79254a
